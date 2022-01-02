@@ -1,0 +1,9 @@
+[
+  "constructor(address)",
+  "function getOrders(address,uint256[]) view returns (address[], address[], uint256[][], uint256[], uint256[7][])",
+  "function getTokens(uint256[]) view returns (address[], uint256[], uint256[], uint256[], uint256[])",
+  "function getTrades(uint256[]) view returns (address[], uint256[], uint256[], tuple(address,uint64)[][])",
+  "function nix() view returns (address)",
+  "function orderStatus(address,tuple(address,address,uint8,uint8,bytes32,uint256,uint64,uint64,uint64,uint64)) view returns (uint8)",
+  "function weth() view returns (address)"
+]

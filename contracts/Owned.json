@@ -1,0 +1,9 @@
+[
+  "constructor()",
+  "error NotOwner()",
+  "event OwnershipTransferred(address indexed,address indexed)",
+  "event Withdrawn(address indexed,uint256,uint256)",
+  "function owner() view returns (address)",
+  "function transferOwnership(address)",
+  "function withdraw(address,uint256,uint256)"
+]
