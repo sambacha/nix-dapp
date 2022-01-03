@@ -12,6 +12,10 @@ Send: https://xstate.js.org/viz/?gist=5158cd1138aaab449b556375906456ac
 
 ##  Discrete Contract Components and Actions
 
+- User
+- Market (i.e. venue)
+
+### User Actions
 ### getOrders
 getOrders (address,uint256[])
 TOKEN
@@ -45,21 +49,21 @@ ORDERINDICES
 i.e. 255, 255
 
 
-getOrder (address,uint256)
+#### getOrder (address,uint256)
 TOKEN
 i.e. 0x261b45d85ccfeabb11f022eba346ee8d1cd488c0
 ORDERINDEX
 i.e. 255
 
 
-ownerOf (uint256)
+#### ownerOf (uint256)
 TOKENID
 i.e. 255
 
 
-/*******************\
+## Market Actions
 
-addOrder (address,address,uint8,uint8,uint256[],uint256,uint256,uint256,uint256,address)
+#### addOrder (address,address,uint8,uint8,uint256[],uint256,uint256,uint256,uint256,address)
 TOKEN
 i.e. 0x261b45d85ccfeabb11f022eba346ee8d1cd488c0
 TAKER
@@ -72,7 +76,7 @@ TOKENIDS
 
 
 
-updateOrder (address,uint256,address,uint256[],uint256,uint256,int256,uint256,address)
+#### updateOrder (address,uint256,address,uint256[],uint256,uint256,int256,uint256,address)
 TOKEN
 i.e. 0x261b45d85ccfeabb11f022eba346ee8d1cd488c0
 ORDERINDEX
@@ -86,7 +90,7 @@ i.e. 255
 EXPIRY
 
 
-updateOrderPriceAndExpiry (address,uint256,uint256,uint256,address)
+#### updateOrderPriceAndExpiry (address,uint256,uint256,uint256,address)
 TOKEN
 i.e. 0x261b45d85ccfeabb11f022eba346ee8d1cd488c0
 ORDERINDEX
@@ -99,7 +103,7 @@ INTEGRATOR
 i.e. 0x261b45d85ccfeabb11f022eba346ee8d1cd488c0
 
 
-executeOrders (address[],uint256[],uint256[][],int256,uint256,address)
+#### executeOrders (address[],uint256[],uint256[][],int256,uint256,address)
 TOKENLIST
 i.e. 0x261b45d85ccfeabb11f022eba346ee8d1cd488c0, 0x261b45d85ccfeabb11f022eba346ee8d1cd488c0
 ORDERINDEXES
@@ -107,7 +111,7 @@ i.e. 255, 255
 TOKENIDSLIST
 
 
-onERC721Received (address,address,uint256,bytes)
+#### onERC721Received (address,address,uint256,bytes)
 OPERATOR
 i.e. 0x261b45d85ccfeabb11f022eba346ee8d1cd488c0
 FROM
@@ -117,13 +121,13 @@ i.e. 255
 DATA
 
 
-transferOwnership (address)
+####  transferOwnership (address)
 _NEWOWNER
 i.e. 0x261b45d85ccfeabb11f022eba346ee8d1cd488c0
 
 
 
-withdraw (address,uint256,uint256)
+#### withdraw (address,uint256,uint256)
 TOKEN
 i.e. 0x261b45d85ccfeabb11f022eba346ee8d1cd488c0
 TOKENS
