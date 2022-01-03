@@ -18,14 +18,14 @@ function Home() {
   return (
     <div>
       <Head>
-        <title>next-web3-boilerplate</title>
+        <title>NiX</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <header>
         <nav>
           <Link href="/">
-            <a>next-web3-boilerplate</a>
+            <a>NiX</a>
           </Link>
 
           <Account triedToEagerConnect={triedToEagerConnect} />
@@ -35,8 +35,8 @@ function Home() {
       <main>
         <h1>
           Welcome to{" "}
-          <a href="https://github.com/mirshko/next-web3-boilerplate">
-            next-web3-boilerplate
+          <a href="#">
+            NiX
           </a>
         </h1>
 
