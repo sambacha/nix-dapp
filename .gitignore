@@ -32,7 +32,6 @@ yarn-error.log*
 .vercel
 
 # contract type generation
-/contracts/types
 
 # typescript
 tsconfig.buildinfo
