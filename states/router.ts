@@ -8,7 +8,7 @@ import {
   send,
 } from "xstate"
 
-import { getUserInfo } from "../libs/ans"
+//import { getUserInfo } from "../libs/ans"
 import {
   GalleryContext,
   galleryMachine,
@@ -30,10 +30,10 @@ export type RouterEvent =
 
 export interface RouterContext {
   name: string
-  walletAddress: string
+  nixRouterAddress: string
   ens: string
-  walletDeployed: boolean
-  hasZkSync: boolean
+  hasBribe: boolean
+  nixRoutingPool: boolean
 }
 
 export type RouterValueType =
@@ -83,10 +83,10 @@ export const createRouterMachine = (history: {
       initial: "loading",
       context: {
         name: "",
-        walletAddress: "0x0",
+        nixRouterAddress: "0x0",
         ens: "",
-        walletDeployed: false,
-        hasZkSync: false,
+        hasBribe: false,
+        nixRoutingPool: false,
       },
       states: {
         loading: {
@@ -139,7 +139,7 @@ export const createRouterMachine = (history: {
             src: galleryMachine,
             data: (context): GalleryContext => ({
               ...galleryMachineDefaultContext,
-              walletAddress: context.walletAddress,
+              nixRouterAddress: context.nixRouterAddress,
             }),
           },
           on: {
@@ -159,7 +159,7 @@ export const createRouterMachine = (history: {
             src: galleryMachine,
             data: (context): GalleryContext => ({
               ...galleryMachineDefaultContext,
-              walletAddress: context.walletAddress,
+              nixRouterAddress: context.nixRouterAddress,
             }),
           },
           on: {
@@ -204,8 +204,8 @@ export const createRouterMachine = (history: {
             src: sendMaschine,
             data: (context): SendContext => ({
               ...sendMachineDefaultContext,
-              walletAddress: context.walletAddress,
-              hasZkSync: context.hasZkSync,
+              nixRouterAddress: context.nixRouterAddress,
+              hasBribed: context.nixRoutingPool
             }),
           },
           on: {
@@ -311,3 +311,7 @@ export const createRouterMachine = (history: {
       },
     },
   )
+function getUserInfo(name: string): RouterContext | PromiseLike<RouterContext> {
+  throw new Error("Function not implemented.")
+}
+

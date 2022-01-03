@@ -14,8 +14,9 @@ export type GalleryEvent =
   | { type: "ADD_NFT"; nft: ImageProp }
 
 export interface GalleryContext {
+  walletAddress(walletAddress: any)
   nfts: ImageProp[]
-  walletAddress: string
+  nixRouterAddress: string
 }
 
 export type GalleryValueType = "loading" | "success" | "error"

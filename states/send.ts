@@ -1,3 +1,5 @@
+import { IERC165__factory } from './../contracts/types/factories/IERC165__factory';
+import { IERC165 } from './../contracts/types/IERC165';
 import { Nix__factory } from './../contracts/types/factories/Nix__factory';
 /** Visualization: https://xstate.js.org/viz/?gist=5158cd1138aaab449b556375906456ac */
 
@@ -14,7 +16,8 @@ import {
 import {
 IERC721Partial__factory,
 NixHelper,
-Nix 
+Nix, 
+IERC20Partial__factory
 } from "../contracts/types"
 import { analytics } from "../src/lib-ethers/analytics"
 import { isSmartContractWallet } from '../src/lib-ethers/detectSmartContract'
@@ -27,6 +30,7 @@ import {
   fetchConfig,
   fetchTokenList,
 } from "../src/api/NftApi"
+import { showRampPromise } from '@/src/user-connectors/swap';
 
 export interface Token {
   address: string
@@ -59,11 +63,11 @@ export type SendEvent =
 export interface SendContext {
   amount: string
   contract: string
-  walletAddress: string
+  nixRouterAddress: string
   isSmartContractWallet: boolean
   transactionHash: string | null
   hasBribed: boolean
-  nixRoutingPools: RoutingToken[]
+  nixRoutingPool: RoutingToken[]
   NixConfig: NixExchangeConfig | null
   tokens: Token[]
 }
@@ -187,7 +191,7 @@ export const sendMaschine = createMachine<
           src: async (context): Promise<Token[]> => {
             const signer = writeProvider.getSigner(0)
             const { nixRoutingPools, NixConfig } = context
-            const balances = await getERC20BalancesAndAllowances(
+            const balances = await getERC165BalancesAndAllowances(
               writeProvider,
               await signer.getAddress(),
               nixRoutingPools
@@ -269,10 +273,10 @@ export const sendMaschine = createMachine<
             )
 
             const signer = writeProvider.getSigner(0)
-            const erc20token = IERC20__factory.connect(contract, signer)
+            const erc20token = IERC20Partial__factory.connect(contract, signer)
 
-            const approveTx = await erc20token
-              .approve(NixConfig!.contract, amountBn)
+            const approveTx = await useWeb
+              (NixConfig!.contract, amountBn)
               .catch((e) => {
                 console.error(e)
                 throw Error("transaction_rejected")
